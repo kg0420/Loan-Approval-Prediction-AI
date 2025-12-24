@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Approval Prediction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-40px) translateX(20px); }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white relative font-sans
+bg-gradient-to-b from-[#020617] via-[#030a1a] to-[#020617]">
+
+<!-- HEADER -->
+<header class="bg-[radial-gradient(ellipse_at_top,_#1e293b_0%,_#020617_60%)]
+text-center h-20 flex items-center justify-center
+text-xl sm:text-3xl font-bold font-serif px-4">
+  Loan Approval Prediction
+</header>
+
+<!-- GLOW BACKGROUND -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -top-48 left-1/2 -translate-x-1/2
+    w-[520px] h-[520px] bg-blue-600/25 rounded-full blur-[140px] animate-pulse"></div>
+
+  <div class="absolute top-1/3 -left-48
+    w-[420px] h-[420px] bg-indigo-700/25 rounded-full blur-[160px]
+    animate-[float_14s_ease-in-out_infinite]"></div>
+
+  <div class="absolute bottom-0 right-0
+    w-[480px] h-[480px] bg-cyan-500/20 rounded-full blur-[180px]
+    animate-[float_18s_ease-in-out_infinite]"></div>
+</div>
+
+<!-- FORM CONTAINER -->
+<div class="flex justify-center px-4 py-10">
+  <form action="/predict" method="POST"
+    class="relative bg-white/10 backdrop-blur-2xl
+    border border-white/15 rounded-2xl
+    shadow-[0_30px_80px_rgba(0,0,0,0.65)]
+    w-full max-w-xl p-6 space-y-4">
+
+    <!-- FIELD -->
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Education</label>
+      <select name="education" required
+        class="w-full rounded-lg border-2 border-black text-black px-3 py-2">
+        <option>Select</option>
+        <option value="Graduate">Graduate</option>
+        <option value="Not Graduate">Not Graduate</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Self Employed</label>
+      <select name="self_employed" required
+        class="w-full rounded-lg border-2 border-black text-black px-3 py-2">
+        <option>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Income</label>
+      <input type="number" name="income_annum" required
+        class="w-full rounded-lg border-2 border-black px-3 py-2 text-black"
+        placeholder="Enter your income">
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Loan Amount</label>
+      <input type="number" name="loan_amount" required
+        class="w-full rounded-lg border-2 border-black px-3 py-2 text-black"
+        placeholder="Enter loan amount">
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Loan Term (Years)</label>
+      <input type="number" name="loan_term" required
+        class="w-full rounded-lg border-2 border-black px-3 py-2 text-black"
+        placeholder="Enter loan term">
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">CIBIL Score</label>
+      <input type="number" name="cibil_score" required
+        class="w-full rounded-lg border-2 border-black px-3 py-2 text-black"
+        placeholder="Enter CIBIL score">
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Residential Asset Value</label>
+      <input type="number" name="residential_assets_value" required
+        class="w-full rounded-lg border-2 border-black px-3 py-2 text-black"
+        placeholder="Enter residential assets value">
+    </div>
+
+    <div>
+      <label class="block text-lg font-serif font-bold mb-1">Commercial Asset Value</label>
+      <input type="number" name="commercial_assets_value" required
+        class="w-full rounded-lg border-2 border-black px-3 py-2 text-black"
+        placeholder="Enter commercial assets value">
+    </div>
+
+    <!-- BUTTON -->
+    <button
+      class="w-full mt-4 bg-gradient-to-r from-blue-600 to-cyan-500
+      hover:from-blue-500 hover:to-cyan-400
+      shadow-[0_14px_40px_rgba(56,189,248,0.7)]
+      transition-all duration-300
+      py-3 rounded-xl font-semibold">
+      Submit
+    </button>
+  </form>
+</div>
+
+<!-- RESULT -->
+{% if prediction_text %}
+<div class="flex justify-center px-4 pb-6">
+  <div class="bg-gradient-to-r from-blue-600 to-cyan-500
+    w-full max-w-sm rounded-xl text-center py-3 shadow-lg">
+    <h3 class="font-bold font-serif text-lg">{{ prediction_text }}</h3>
+  </div>
+</div>
+{% endif %}
+
+<!-- FOOTER -->
+<footer class="bg-[radial-gradient(ellipse_at_top,_#1e293b_0%,_#020617_60%)]
+text-center py-4 text-lg font-bold font-serif">
+  © Developer Krish Gupta
+</footer>
+
+</body>
+</html>
